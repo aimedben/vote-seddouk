@@ -1,0 +1,80 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        (request.auth.token.email is string && request.auth.token.email == 'seddouk2004@gmail.com')
+      );
+    }
+
+    // Settings Collection
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Parties Collection (Read by citizens, increment ballotCount on vote, full manage by admin)
+    match /parties/{partyId} {
+      allow read: if true;
+      allow update: if isAdmin() || (
+        isValidId(partyId) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ballotCount']) &&
+        request.resource.data.ballotCount is number &&
+        request.resource.data.ballotCount >= resource.data.ballotCount
+      );
+      allow create, delete: if isAdmin();
+    }
+
+    // Candidates Collection (Read by citizens, increment voteCount on vote, full manage by admin)
+    match /candidates/{candidateId} {
+      allow read: if true;
+      allow update: if isAdmin() || (
+        isValidId(candidateId) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['voteCount']) &&
+        request.resource.data.voteCount is number &&
+        request.resource.data.voteCount >= resource.data.voteCount
+      );
+      allow create, delete: if isAdmin();
+    }
+
+    // Ballots Collection
+    match /ballots/{ballotId} {
+      allow create: if isValidId(ballotId) &&
+        request.resource.data.partyId is string &&
+        request.resource.data.candidateIds is list &&
+        request.resource.data.candidateIds.size() >= 1 &&
+        request.resource.data.candidateIds.size() <= 10 &&
+        request.resource.data.createdAt is string;
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Audit Logs Collection
+    match /auditLogs/{logId} {
+      allow read, create: if isAdmin();
+    }
+
+    // Admins Collection
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,1166 @@
+# PROMPT COMPLET — SEDDOUK ELECTIONS 2026
+
+## 1. Présentation générale du projet
+
+Agis comme une équipe professionnelle composée d'un expert UI/UX, d'un développeur Full-Stack senior, d'un spécialiste de la sécurité informatique et d'un architecte de bases de données.
+
+Conçois et développe une plateforme web complète, moderne, responsive et facile à utiliser, appelée :
+
+**SEDDOUK ELECTIONS 2026**
+
+La plateforme permet aux visiteurs de consulter les quatre listes candidates, de découvrir leurs candidats, de participer à un vote avec une sélection de 1 à 10 candidats maximum, et de consulter les résultats et les classements.
+
+Elle comprend deux espaces distincts :
+
+1. **Espace public :** accueil, sélection d'une liste, sélection des candidats, validation du vote et consultation des résultats.
+2. **Espace administrateur :** gestion des listes, des candidats, des votes, des résultats, des paramètres et de la sécurité.
+
+Le nom de la commune est Seddouk, wilaya de Béjaïa, Algérie.
+
+La date affichée sur la page d'accueil est le **28 novembre 2026**. Cette date doit rester modifiable depuis l'administration.
+
+### Objectif principal
+
+Créer une plateforme qui inspire confiance, qui soit élégante et agréable à regarder, mais surtout très simple à utiliser.
+
+La priorité absolue est l'accessibilité : même une personne âgée, une personne ayant une mauvaise vue ou une personne ayant des difficultés à lire le français doit pouvoir comprendre comment participer grâce à des images, des numéros, des icônes et de grands boutons.
+
+Ne surcharge jamais les pages. Chaque écran doit présenter uniquement les informations et les actions nécessaires à cette étape.
+
+---
+
+# 2. Direction artistique et identité visuelle
+
+## Inspiration : APC de Seddouk
+
+Utiliser comme référence visuelle la page Facebook de l'APC de Seddouk :
+
+https://www.facebook.com/apcseddoukcelluledecommunication/
+
+Image de référence fournie :
+
+https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=403216445315063
+
+S'inspirer de l'ambiance graphique et institutionnelle de l'APC pour construire une identité visuelle cohérente avec Seddouk.
+
+Ne pas faire une simple copie du visuel de référence. Créer une interface originale, contemporaine et professionnelle.
+
+### Palette de couleurs
+
+Analyser l'image de référence lorsqu'elle est accessible et identifier ses couleurs dominantes. Construire ensuite une palette harmonieuse autour de celles-ci.
+
+En attendant l'extraction des couleurs exactes, utiliser cette palette de secours :
+
+| Élément | Couleur |
+|---|---|
+| Vert institutionnel | #174B3A |
+| Vert profond | #103D32 |
+| Vert doux | #E8F0EB |
+| Blanc | #FFFFFF |
+| Fond beige clair | #F6F4EE |
+| Texte principal | #202A27 |
+| Rouge discret d'accent | #B94A48 |
+| Bordures | #E2E8E3 |
+
+Le vert doit être la couleur principale de l'interface, avec le blanc comme couleur dominante des surfaces.
+
+Utiliser le rouge uniquement comme accent discret pour certaines indications ou certains éléments de l'identité nationale.
+
+Ne pas utiliser trop de couleurs simultanément. L'interface doit être calme, harmonieuse et lisible.
+
+### Style graphique
+
+Adopter un style :
+
+- Institutionnel et moderne.
+- Minimaliste, élégant et professionnel.
+- Très propre, avec de grands espaces.
+- Avec des cartes légèrement arrondies.
+- Avec des ombres très légères.
+- Avec des bordures fines et discrètes.
+- Avec des icônes Lucide cohérentes.
+- Avec des transitions fluides et discrètes.
+
+Éviter les dégradés excessifs, les effets lumineux, les animations inutiles, les couleurs fluorescentes et les décorations sans fonction.
+
+### Typographie
+
+Utiliser une typographie moderne et très lisible.
+
+Recommandation :
+- Inter pour le français.
+- Noto Sans Arabic pour l'arabe.
+
+Les titres doivent être suffisamment grands et les informations importantes particulièrement visibles.
+
+### Symbolique locale
+
+Intégrer un symbole graphique discret inspiré de Cheikh Aheddad dans l'identité de la page d'accueil.
+
+Ce symbole peut être une illustration vectorielle ou une icône stylisée. Il ne doit pas devenir une grande photographie décorative.
+
+Ne pas ajouter de paysages, de photographies décoratives ou d'images sans utilité.
+
+**Important concernant l'identité APC :** ne pas prétendre que la plateforme est officiellement exploitée par l'APC et ne pas utiliser son logo officiel sans autorisation. L'inspiration graphique ne constitue pas une affiliation officielle.
+
+---
+
+# 3. Architecture générale et navigation
+
+Créer une expérience organisée autour des pages suivantes :
+
+### Espace public
+
+- `/` : accueil.
+- `/listes` : présentation des quatre listes et résultats généraux.
+- `/vote/:listId` : sélection des candidats d'une liste.
+- `/confirmation` : vérification du choix.
+- `/vote-reussi` : confirmation finale.
+- `/resultats` : consultation détaillée des résultats, si leur publication est activée.
+
+### Espace administrateur
+
+- `/adminin` : connexion administrateur.
+- `/adminin/dashboard` : tableau de bord.
+- `/adminin/listes` : gestion des listes.
+- `/adminin/candidats` : gestion des candidats.
+- `/adminin/votes` : gestion des votes.
+- `/adminin/resultats` : suivi des résultats.
+- `/adminin/historique` : historique des opérations.
+- `/adminin/securite` : sécurité des votes.
+- `/adminin/parametres` : paramètres généraux.
+
+### Navigation publique
+
+Ne jamais charger la page avec une navbar complexe.
+
+Sur l'espace public, utiliser une navigation très légère :
+- Logo ou identité de Seddouk Elections.
+- Icône de langue en haut à droite.
+- Indication discrète de l'étape en cours si nécessaire.
+
+Ne pas ajouter de menu inutile.
+
+---
+
+# 4. Langues : français et arabe
+
+La langue par défaut est le français.
+
+Ajouter un bouton de langue facilement identifiable en haut à droite, avec une icône de globe ou de traduction.
+
+Proposer deux langues :
+
+- Français 🇫🇷
+- العربية 🇩🇿
+
+La sélection de langue doit être conservée lorsque l'utilisateur change de page.
+
+### Version arabe
+
+La version arabe doit être entièrement traduite, et pas seulement les titres.
+
+Prévoir :
+- Une mise en page RTL complète.
+- L'alignement des textes à droite.
+- L'inversion correcte des espacements et des éléments.
+- Des flèches adaptées au sens de lecture.
+- Des menus, boutons et formulaires correctement positionnés.
+- Une typographie arabe lisible.
+
+Les photos, les logos des listes, les numéros de listes et les numéros des candidats doivent rester identiques dans les deux langues.
+
+---
+
+# 5. Page d'accueil
+
+Créer une page d'accueil élégante et extrêmement simple.
+
+### Composition
+
+En haut :
+- Identité SEDDOUK ELECTIONS 2026.
+- Sélecteur de langue en haut à droite.
+
+Au centre :
+- Illustration symbolique de Cheikh Aheddad.
+- Grand titre :
+
+**WELCOME TO SEDDOUK ELECTIONS 2026**
+
+- Sous-titre indiquant la date : **28 NOVEMBRE 2026**.
+- Une courte phrase accueillante.
+
+En bas :
+- Un énorme bouton principal vert :
+
+**COMMENCER**
+
+Accompagner le bouton d'une icône de main ou de toucher.
+
+Le bouton doit être immédiatement visible. Il doit être suffisamment grand pour être facilement utilisé sur un téléphone ou par une personne âgée.
+
+Au clic, rediriger vers la page des listes.
+
+Ne pas ajouter de longs paragraphes.
+
+---
+
+# 6. Page principale des quatre listes
+
+C'est une page centrale du projet.
+
+Elle doit présenter les quatre listes candidates de manière équilibrée, professionnelle et facile à comprendre.
+
+### Les quatre listes à intégrer
+
+Utiliser les quatre affiches précédemment fournies comme sources de données :
+
+| Parti | Numéro de liste |
+|---|---:|
+| FFS | 7 |
+| AMAYNUT | 101 |
+| FLN | 1 |
+| RCD | 9 |
+
+Réutiliser fidèlement les logos et les informations provenant des affiches originales.
+
+Ne jamais inventer un logo, un nom ou une information concernant les candidats.
+
+### Présentation des quatre cartes
+
+Afficher les quatre listes simultanément.
+
+Chaque carte doit présenter :
+- Logo officiel ou logo présent sur l'affiche fournie.
+- Numéro de liste en grand.
+- Nom du parti.
+- Un bouton ou une zone d'action clairement identifiable.
+- Éventuellement une courte indication du nombre de candidats.
+
+Toutes les cartes doivent avoir exactement la même importance visuelle.
+
+Ne pas mettre en avant une liste par rapport aux autres dans le choix initial.
+
+Utiliser les couleurs des partis uniquement dans leurs cartes et leurs éléments d'identification. L'identité générale de la plateforme doit rester cohérente avec le thème vert institutionnel de Seddouk.
+
+### Interaction
+
+Lorsqu'un utilisateur sélectionne une liste, ouvrir sa page de candidats.
+
+Afficher clairement la liste sélectionnée pour éviter toute confusion.
+
+---
+
+# 7. Section RÉSULTATS & CLASSEMENT sur la page des listes
+
+Sur la même page que les quatre partis, intégrer une grande section intitulée :
+
+**RÉSULTATS & CLASSEMENT**
+
+Cette section doit être très claire, bien structurée et immédiatement compréhensible.
+
+Le classement général doit être la vue affichée par défaut.
+
+## 7.1 Classement général de toutes les listes
+
+Afficher les quatre partis du premier au dernier selon le nombre de bulletins enregistrés pour chaque liste.
+
+Le parti arrivé en première position doit être particulièrement mis en valeur.
+
+### Présentation du premier
+
+Créer une grande carte spéciale qui contient :
+
+- Badge « 1er ».
+- Icône trophée.
+- Logo du parti.
+- Numéro de liste.
+- Nom du parti.
+- Nombre de voix.
+- Pourcentage du total des voix valides.
+- Barre de progression.
+
+Le premier doit être identifiable dès le premier regard.
+
+Ne pas utiliser une animation excessive ou des effets qui perturbent la lecture.
+
+### Présentation des autres positions
+
+Afficher les deuxième, troisième et quatrième listes dans des cartes plus compactes mais très lisibles.
+
+Chaque carte doit afficher :
+- Position au classement.
+- Logo.
+- Nom.
+- Numéro.
+- Nombre de voix.
+- Pourcentage.
+- Barre de progression.
+
+Utiliser des repères visuels pour les trois premières positions :
+- Or pour le premier.
+- Argent pour le deuxième.
+- Bronze pour le troisième.
+
+Toujours afficher les numéros de rang, afin que le classement ne dépende jamais uniquement des couleurs.
+
+### Informations globales
+
+Afficher clairement :
+- Total des bulletins valides.
+- Total des bulletins enregistrés.
+- Nombre de listes participantes.
+- État des résultats : provisoires ou définitifs.
+
+Ne pas confondre le nombre de bulletins avec le nombre total de sélections individuelles de candidats.
+
+## 7.2 Filtres de classement
+
+Ajouter un filtre simple, sous forme d'onglets ou de boutons larges :
+
+- TOUTES LES LISTES
+- FFS
+- AMAYNUT
+- FLN
+- RCD
+
+Le filtre doit être facile à utiliser, même sur un petit écran.
+
+### Fonctionnement
+
+**Toutes les listes :**
+Afficher le classement général des quatre partis.
+
+**FFS :**
+Afficher les résultats détaillés des candidats du FFS.
+
+**AMAYNUT :**
+Afficher les résultats détaillés des candidats d'AMAYNUT.
+
+**FLN :**
+Afficher les résultats détaillés des candidats du FLN.
+
+**RCD :**
+Afficher les résultats détaillés des candidats du RCD.
+
+Lorsque le visiteur sélectionne un parti, la section doit changer de contenu sans recharger toute la page.
+
+## 7.3 Classement des candidats
+
+Dans le filtre de chaque parti, afficher les candidats selon leur nombre de voix, du premier au dernier.
+
+Chaque ligne ou carte doit présenter :
+- Rang du candidat.
+- Photo.
+- Prénom et nom.
+- Numéro d'ordre sur la liste.
+- Nombre de voix.
+- Pourcentage des bulletins de sa liste ayant sélectionné ce candidat.
+- Barre de progression.
+
+Mettre le premier candidat particulièrement en évidence avec une carte spéciale et un badge « 1er ».
+
+Les autres candidats doivent rester visibles et faciles à comparer.
+
+### Gestion des égalités
+
+Si deux partis ou candidats ont exactement le même nombre de voix, leur attribuer le même rang.
+
+Ne pas départager artificiellement les égalités.
+
+### État des résultats
+
+Prévoir les cas suivants :
+- Résultats non disponibles.
+- Résultats en cours.
+- Résultats provisoires.
+- Résultats définitifs.
+
+Ne jamais afficher des zéros fictifs pour des résultats qui n'existent pas encore.
+
+Si l'administrateur désactive la publication publique, masquer les chiffres et afficher un message indiquant que les résultats ne sont pas encore disponibles.
+
+---
+
+# 8. Parcours de vote public
+
+Le vote doit être organisé en étapes courtes et évidentes.
+
+## Étape 1 — Choisir une liste
+
+Afficher les quatre listes.
+
+L'utilisateur choisit une seule liste.
+
+Après sélection, ouvrir uniquement les candidats appartenant à cette liste.
+
+## Étape 2 — Afficher les candidats
+
+Afficher tous les candidats de la liste sélectionnée.
+
+Chaque candidat doit avoir une grande carte avec :
+- Photo officielle provenant de l'affiche fournie.
+- Numéro d'ordre.
+- Prénom et nom.
+- Profession ou âge uniquement si ces informations existent réellement dans la source.
+
+Les photos doivent être grandes, nettes et reconnaissables.
+
+Ne pas utiliser les affiches complètes comme fond des cartes.
+
+### Grille responsive
+
+Ordinateur :
+- 4 colonnes si la taille des photos reste confortable.
+
+Tablette :
+- 3 colonnes.
+
+Téléphone :
+- 2 colonnes.
+
+Réduire le nombre de colonnes si cela permet d'avoir des photos plus grandes et plus lisibles.
+
+## Étape 3 — Sélection des candidats
+
+L'utilisateur peut sélectionner entre 1 et 10 candidats maximum dans la liste choisie.
+
+Il n'est pas obligé d'en sélectionner exactement 10.
+
+La sélection fonctionne en cliquant sur la carte du candidat.
+
+Quand un candidat est sélectionné :
+- Afficher une bordure verte épaisse.
+- Ajouter une grande coche visible.
+- Conserver l'image du candidat bien lisible.
+- Modifier clairement l'état visuel de la carte.
+
+Ajouter un compteur dynamique :
+
+**CANDIDATS SÉLECTIONNÉS : 3 / 10**
+
+Le nombre doit être très grand.
+
+### Règles
+
+- Minimum : 1 candidat.
+- Maximum : 10 candidats.
+- Interdire la sélection d'un onzième candidat.
+- Bloquer le bouton de validation si aucun candidat n'est sélectionné.
+- Afficher un message clair lorsque la limite de 10 est atteinte.
+- Ne jamais permettre la sélection de candidats appartenant à une autre liste.
+
+Ajouter en bas de la page un bouton fixe :
+
+**VOTER**
+
+Ce bouton doit rester visible et accessible sans masquer les candidats.
+
+## Étape 4 — Confirmation du choix
+
+Avant l'enregistrement définitif, présenter un récapitulatif.
+
+Afficher :
+- Logo et nom du parti.
+- Numéro de la liste.
+- Photos des candidats sélectionnés.
+- Noms.
+- Nombre total de candidats sélectionnés.
+
+Ajouter deux gros boutons :
+
+**CONFIRMER** — bouton principal vert.
+
+**RETOUR** — bouton secondaire.
+
+Aucun vote ne doit être enregistré avant l'action sur CONFIRMER.
+
+## Étape 5 — Enregistrement sécurisé
+
+À la confirmation :
+- Envoyer les données au serveur.
+- Vérifier la validité de la sélection.
+- Vérifier la restriction anti-doublon.
+- Enregistrer le bulletin et ses candidats dans une transaction atomique.
+- Incrémenter les compteurs de la liste et de ses candidats.
+- Empêcher toute double soumission.
+
+En cas d'erreur, afficher un message compréhensible et ne pas enregistrer un bulletin partiel.
+
+## Étape 6 — Confirmation finale
+
+Afficher une page simple et positive avec :
+- Grande coche verte.
+- Icône d'urne ou de bulletin.
+- Texte : **VOTE ENREGISTRÉ**
+- Texte secondaire : **MERCI BEAUCOUP**
+
+Ne pas afficher les résultats sur cet écran.
+
+Ne pas permettre de soumettre une nouvelle fois le même vote.
+
+---
+
+# 9. Espace administrateur — `/adminin`
+
+Créer un espace privé, totalement séparé de la partie publique.
+
+L'accès doit être protégé par une véritable authentification côté serveur.
+
+### Identifiants initiaux
+
+Nom d'utilisateur initial : `admin`
+
+Mot de passe temporaire initial : `aimed004`
+
+Ces identifiants servent uniquement au premier paramétrage.
+
+Ne jamais intégrer le mot de passe dans le code frontend, dans une variable JavaScript publique ou dans une page accessible aux visiteurs.
+
+Configurer le mot de passe initial avec un secret serveur, enregistrer un hash sécurisé et imposer son changement dès la première connexion.
+
+Ne pas conserver le mot de passe en clair dans la base de données.
+
+### Page de connexion
+
+Design minimaliste :
+- Identité de la plateforme.
+- Titre ADMINISTRATION.
+- Champ nom d'utilisateur.
+- Champ mot de passe.
+- Icône afficher/masquer le mot de passe.
+- Bouton SE CONNECTER.
+
+Ajouter une protection contre les tentatives répétées de connexion.
+
+### Tableau de bord
+
+Créer un dashboard moderne avec de grandes cartes statistiques.
+
+Afficher notamment :
+
+1. Total des bulletins enregistrés.
+2. Total des voix attribuées aux listes.
+3. Total des sélections de candidats.
+4. Nombre de listes.
+5. Nombre de candidats.
+6. Nombre d'adresses IP ayant participé.
+7. État de publication des résultats.
+
+Les valeurs doivent être dynamiques et provenir de la base de données.
+
+Ajouter des graphiques simples pour visualiser :
+- La répartition des voix par liste.
+- Le classement des listes.
+- Le classement des candidats.
+- L'évolution des participations dans le temps.
+
+Ne pas surcharger le dashboard.
+
+### Navigation de l'administration
+
+Créer un menu latéral moderne :
+
+- Tableau de bord.
+- Gestion des listes.
+- Gestion des candidats.
+- Gestion des votes.
+- Résultats.
+- Historique des modifications.
+- Sécurité des votes.
+- Paramètres.
+- Déconnexion.
+
+Sur téléphone, transformer le menu en navigation compacte.
+
+---
+
+# 10. Gestion des listes
+
+Créer une page complète pour gérer les quatre listes.
+
+Chaque liste doit être présentée dans une carte ou une ligne de tableau avec :
+
+- Logo.
+- Nom du parti.
+- Numéro.
+- Nombre de candidats.
+- Nombre de bulletins attribués.
+- Visibilité publique.
+- Actions.
+
+### Actions disponibles
+
+- Ajouter une liste.
+- Modifier les informations.
+- Modifier le logo.
+- Ajouter des voix.
+- Retirer des voix.
+- Activer ou désactiver l'affichage public.
+- Consulter les candidats de la liste.
+
+### Modification des voix
+
+Lorsqu'un administrateur veut ajouter ou retirer des voix :
+
+Afficher une fenêtre contenant :
+- Action : ajouter ou retirer.
+- Quantité.
+- Motif obligatoire.
+- Bouton CONFIRMER.
+- Bouton ANNULER.
+
+Ne jamais modifier silencieusement un compteur.
+
+Interdire les valeurs négatives.
+
+---
+
+# 11. Gestion des candidats
+
+Créer une page de gestion des candidats organisée par liste.
+
+Chaque candidat est présenté avec :
+- Photo.
+- Prénom et nom.
+- Numéro d'ordre.
+- Parti.
+- Nombre de voix.
+- Actions.
+
+### Actions
+
+- Ajouter un candidat.
+- Modifier un candidat.
+- Modifier sa photo.
+- Modifier son nom.
+- Modifier son numéro d'ordre.
+- Supprimer un candidat.
+- Ajouter des voix.
+- Retirer des voix.
+
+Toute suppression ou modification importante doit nécessiter une confirmation.
+
+Les opérations de modification manuelle des voix nécessitent un motif obligatoire et une trace dans l'historique.
+
+Ne pas inventer d'informations concernant les candidats.
+
+---
+
+# 12. Gestion des votes et des compteurs
+
+La logique des compteurs doit être définie précisément.
+
+### A. Bulletins par liste
+
+Lorsqu'un visiteur valide un bulletin :
+- Un seul bulletin est ajouté à la liste sélectionnée.
+- Le compteur de la liste augmente de 1.
+
+### B. Voix des candidats
+
+Pour chacun des candidats sélectionnés :
+- Le compteur individuel du candidat augmente de 1.
+
+Un bulletin contenant cinq candidats produit donc :
+- 1 bulletin supplémentaire pour la liste.
+- 1 voix supplémentaire pour chacun des cinq candidats.
+
+**Important :** le nombre de bulletins par liste ne doit pas être calculé en additionnant les voix de ses candidats. Les deux statistiques sont différentes.
+
+### C. Classement
+
+Le classement général des listes utilise le nombre de bulletins valides attribués à chaque liste.
+
+Le classement interne d'un parti utilise le nombre de bulletins dans lesquels chaque candidat a été sélectionné.
+
+Les pourcentages doivent utiliser les bons dénominateurs :
+- Pourcentage d'une liste : bulletins valides de cette liste divisés par le total des bulletins valides.
+- Pourcentage d'un candidat : bulletins de sa liste ayant sélectionné ce candidat divisés par le total des bulletins valides de sa liste.
+
+Préciser que les pourcentages des candidats peuvent dépasser ensemble 100 % en raison du vote multiple.
+
+---
+
+# 13. Sécurité : empêcher les votes multiples par adresse IP
+
+Mettre en place un système de protection anti-doublon.
+
+### 13.1 Identification IP
+
+Récupérer automatiquement l'adresse IP du visiteur au moment de la validation du bulletin.
+
+Cette opération doit se faire exclusivement côté serveur.
+
+Ne jamais faire confiance à une adresse IP fournie directement par le navigateur.
+
+Si le site utilise Cloudflare ou un autre proxy, configurer correctement la récupération de l'adresse IP réelle et ne faire confiance qu'aux en-têtes provenant du proxy configuré.
+
+Normaliser les adresses IPv4 et IPv6 avant comparaison.
+
+### 13.2 Un seul bulletin par IP
+
+Au moment de valider le bulletin :
+1. Le serveur récupère l'adresse IP.
+2. Il calcule une empreinte sécurisée à l'aide d'un HMAC et d'un secret serveur.
+3. Il vérifie si cette empreinte existe déjà pour la consultation en cours.
+4. Si elle existe, le bulletin est refusé.
+5. Si elle n'existe pas, le bulletin et son empreinte sont enregistrés dans une même transaction.
+
+Créer une contrainte d'unicité en base de données sur l'identifiant de la consultation et l'empreinte IP.
+
+Cette contrainte doit empêcher les doubles votes même si deux requêtes arrivent exactement en même temps.
+
+### 13.3 Message si l'IP a déjà voté
+
+Afficher :
+
+**« Vous avez déjà participé au vote. Un seul vote est autorisé par adresse IP. Merci de votre compréhension. »**
+
+Proposer un bouton RETOUR À L'ACCUEIL.
+
+### 13.4 Exception administrateur
+
+L'administrateur n'est pas soumis à la restriction par IP pour les opérations de gestion.
+
+Il peut :
+- Ajouter des voix.
+- Retirer des voix.
+- Corriger des compteurs.
+- Débloquer une restriction.
+- Réinitialiser les données d'une consultation selon les permissions.
+
+Les opérations administratives doivent rester séparées des bulletins publics et être enregistrées dans l'historique.
+
+Ne jamais permettre au visiteur public de se faire passer pour un administrateur en modifiant une requête.
+
+### 13.5 Écran de sécurité dans l'administration
+
+Créer une rubrique « SÉCURITÉ DES VOTES » avec :
+
+- Nombre d'adresses IP ayant participé.
+- Nombre de tentatives refusées.
+- Date et heure des participations.
+- Recherche par empreinte IP.
+- Consultation des restrictions.
+- Déblocage d'une restriction avec motif obligatoire.
+- Activation ou désactivation de la protection.
+- Historique des déblocages.
+
+Ne pas afficher les adresses IP dans l'espace public.
+
+Par défaut, conserver uniquement l'empreinte HMAC plutôt que les adresses IP en clair. Limiter l'accès à ces données et définir une durée de conservation.
+
+### 13.6 Limites de la protection IP
+
+Une adresse IP ne représente pas toujours une personne unique :
+- Plusieurs personnes peuvent partager une même connexion.
+- Une adresse IP peut changer.
+- Un VPN ou un réseau mobile peut permettre de revenir avec une autre adresse.
+
+Prévoir un avertissement clair dans la configuration administrateur.
+
+Pour une consultation nécessitant une unicité plus fiable, permettre ultérieurement l'ajout de codes individuels ou d'une vérification par compte.
+
+Ne pas présenter cette protection IP comme une garantie d'identité ou de sécurité électorale.
+
+---
+
+# 14. Historique des modifications
+
+Créer un journal d'audit retraçant toutes les opérations sensibles.
+
+Afficher sous forme de tableau :
+
+- Date.
+- Heure.
+- Administrateur responsable.
+- Type d'opération.
+- Liste ou candidat concerné.
+- Ancienne valeur.
+- Quantité ajoutée ou retirée.
+- Nouvelle valeur.
+- Motif.
+
+L'historique doit être consultable et filtrable.
+
+Les administrateurs ordinaires ne doivent pas pouvoir modifier ou supprimer les anciennes traces.
+
+Utiliser une politique serveur et des permissions de base de données empêchant la modification non autorisée de l'historique.
+
+Prévoir un export CSV.
+
+---
+
+# 15. Gestion des résultats publics
+
+Dans les paramètres de l'administration, ajouter :
+
+- Activer les résultats publics.
+- Désactiver les résultats publics.
+- Afficher les résultats provisoires.
+- Marquer les résultats comme définitifs.
+- Réinitialiser une consultation uniquement avec confirmation renforcée.
+
+Lorsque les résultats publics sont désactivés :
+- Masquer les chiffres.
+- Ne pas exposer les données des candidats dans les réponses publiques de l'API.
+- Afficher un message informatif.
+
+Lorsque les résultats sont activés :
+- Les afficher sur la page des quatre listes.
+- Actualiser le classement automatiquement après chaque modification des données.
+- Montrer clairement leur statut provisoire ou définitif.
+
+Ne jamais créer de faux chiffres ou de faux résultats pour remplir une interface.
+
+---
+
+# 16. Paramètres de la plateforme
+
+Créer une page de paramètres permettant à l'administrateur de gérer :
+
+### Informations générales
+- Nom de la plateforme.
+- Commune.
+- Wilaya.
+- Date de la consultation.
+- Texte d'accueil.
+- Identité graphique.
+
+### Listes et candidats
+- Ajout et modification des listes.
+- Importation des logos.
+- Importation des photos.
+- Gestion de l'ordre des candidats.
+
+### Sécurité
+- Modification du mot de passe.
+- Gestion des sessions.
+- Protection anti-doublon IP.
+- Historique de sécurité.
+
+### Résultats
+- Activation et désactivation de la publication.
+- Choix entre provisoire et définitif.
+- Export des statistiques.
+
+### Données
+- Export CSV ou Excel.
+- Sauvegardes.
+- Réinitialisation contrôlée avec confirmation et journalisation.
+
+---
+
+# 17. Base de données et architecture technique
+
+Ne pas créer une simple maquette frontend.
+
+La plateforme doit fonctionner avec une vraie base de données et une authentification sécurisée.
+
+### Technologies recommandées
+
+- React avec TypeScript.
+- Next.js.
+- Tailwind CSS.
+- shadcn/ui pour les composants d'interface.
+- Lucide Icons.
+- Supabase avec PostgreSQL.
+- Supabase Auth pour l'administration.
+- API ou fonctions serveur pour l'enregistrement des bulletins.
+
+### Tables principales
+
+Créer au minimum les tables suivantes :
+
+**events**
+- id
+- name
+- municipality
+- event_date
+- status
+- public_results_enabled
+- results_status
+- created_at
+
+**parties**
+- id
+- event_id
+- name
+- list_number
+- logo_url
+- theme_color
+- is_public
+- display_order
+- manual_vote_adjustment
+
+**candidates**
+- id
+- party_id
+- first_name
+- last_name
+- photo_url
+- list_position
+- profession
+- is_active
+- manual_vote_adjustment
+
+**ballots**
+- id
+- event_id
+- party_id
+- voter_ip_fingerprint
+- created_at
+
+**ballot_candidates**
+- ballot_id
+- candidate_id
+
+**admin_profiles**
+- id
+- username
+- role
+- created_at
+
+**audit_logs**
+- id
+- admin_id
+- action
+- entity_type
+- entity_id
+- old_value
+- adjustment
+- new_value
+- reason
+- created_at
+
+**security_events**
+- id
+- event_id
+- ip_fingerprint
+- event_type
+- created_at
+- details
+
+Adapter ce modèle si nécessaire, mais préserver la séparation entre les bulletins publics, les sélections de candidats et les ajustements administratifs.
+
+Les compteurs affichés doivent être calculés ou mis à jour de façon cohérente à partir des données persistantes.
+
+### Règles de sécurité
+
+- Toutes les opérations sensibles passent par le serveur.
+- Utiliser des transactions SQL pour les bulletins.
+- Utiliser des contraintes d'intégrité.
+- Activer les règles RLS de Supabase.
+- Séparer les permissions publiques et administratives.
+- Ne pas exposer les clés secrètes dans le navigateur.
+- Ne pas stocker les mots de passe en clair.
+- Limiter les tentatives de connexion.
+- Vérifier côté serveur la liste, les candidats et le nombre de sélections.
+- Interdire les bulletins contenant des candidats de plusieurs listes.
+- Vérifier qu'aucun candidat ne figure deux fois dans un même bulletin.
+- Empêcher les compteurs négatifs.
+
+La clé `service_role` de Supabase ne doit jamais être exposée dans le frontend.
+
+---
+
+# 18. Accessibilité et expérience utilisateur
+
+L'interface doit être pensée pour des personnes ayant des niveaux de lecture et des capacités visuelles différents.
+
+### Règles obligatoires
+
+- Boutons très grands.
+- Textes lisibles.
+- Contraste élevé.
+- Icônes universelles.
+- Photos suffisamment grandes.
+- Espacements généreux.
+- Une action principale par écran.
+- Formulaires simples.
+- Feedback visuel après chaque action.
+- Coche visible pour chaque sélection.
+- Aucune information essentielle transmise uniquement par une couleur.
+
+Ne pas utiliser de petites polices pour les éléments importants.
+
+Les messages d'erreur doivent être courts et compréhensibles.
+
+Sur ordinateur, l'interface doit rester élégante et professionnelle.
+
+Sur mobile, les boutons doivent être confortables à toucher et les cartes doivent rester faciles à parcourir.
+
+Ne pas imposer de gestes complexes, de menus cachés ou de fonctionnalités nécessitant une lecture approfondie.
+
+---
+
+# 19. Responsive design
+
+Construire une interface parfaite sur :
+
+- Ordinateur.
+- Tablette.
+- Téléphone Android.
+- iPhone.
+
+Tester les dimensions d'écran courantes.
+
+Sur mobile :
+- Boutons larges.
+- Grilles adaptées.
+- Images visibles.
+- Barre de validation du vote fixe en bas.
+- Pas de débordement horizontal.
+
+Sur tablette et ordinateur :
+- Utiliser intelligemment l'espace disponible.
+- Garder une hiérarchie claire.
+- Ne pas étirer excessivement les cartes.
+
+---
+
+# 20. Design des composants
+
+Créer un système de composants réutilisables :
+
+- `Header`
+- `LanguageSwitcher`
+- `WelcomeScreen`
+- `PartyCard`
+- `PartySelector`
+- `ResultsSection`
+- `GeneralRanking`
+- `PartyRanking`
+- `CandidateCard`
+- `CandidateRanking`
+- `SelectionCounter`
+- `VoteActionBar`
+- `ConfirmationSummary`
+- `VoteSuccess`
+- `AdminSidebar`
+- `AdminDashboard`
+- `StatsCard`
+- `VoteAdjustmentDialog`
+- `AuditLogTable`
+- `SecurityPanel`
+
+Tous les composants doivent respecter la même identité visuelle.
+
+Utiliser des états visuels cohérents pour :
+- Normal.
+- Survol.
+- Sélectionné.
+- Désactivé.
+- Chargement.
+- Erreur.
+- Succès.
+
+---
+
+# 21. Données initiales et intégration des affiches
+
+Importer les quatre listes à partir des affiches fournies précédemment :
+
+- FFS — numéro 7.
+- AMAYNUT — numéro 101.
+- FLN — numéro 1.
+- RCD — numéro 9.
+
+Extraire avec soin les noms, numéros d'ordre et photos des candidats.
+
+**Règles essentielles :**
+- Respecter exactement l'orthographe présente sur les affiches.
+- Conserver les photos des personnes correspondantes.
+- Ne jamais générer de faux portraits.
+- Ne jamais mélanger les candidats entre les listes.
+- Ne pas inventer de profession ou d'âge.
+- Vérifier les données incertaines avant publication.
+- Laisser les champs inconnus vides plutôt que d'inventer une information.
+
+Créer une structure facilement modifiable dans l'espace administrateur.
+
+---
+
+# 22. Tests et conditions de validation
+
+Avant de considérer la plateforme comme terminée, vérifier les cas suivants.
+
+### Vote public
+- Un visiteur peut choisir une liste.
+- Il ne peut sélectionner que les candidats de cette liste.
+- Il peut choisir de 1 à 10 candidats.
+- Il ne peut pas sélectionner un onzième candidat.
+- Il peut revenir en arrière avant confirmation.
+- Le vote n'est enregistré qu'après confirmation.
+- Un bulletin validé ne peut pas être soumis deux fois.
+
+### Sécurité IP
+- Une même empreinte IP ne peut pas enregistrer deux bulletins.
+- Deux requêtes simultanées ne peuvent pas contourner la restriction.
+- Un visiteur ne peut pas modifier son statut pour devenir administrateur.
+- L'administrateur peut effectuer des opérations de gestion.
+- Les opérations de gestion sont journalisées.
+
+### Résultats
+- Le classement général trie correctement les listes.
+- Chaque filtre affiche les candidats de la bonne liste.
+- Les pourcentages utilisent les bons dénominateurs.
+- Les égalités sont gérées correctement.
+- Les chiffres sont actualisés après les modifications.
+- Les résultats restent masqués lorsque l'administrateur les désactive.
+- Aucun faux résultat n'est affiché.
+
+### Administration
+- L'accès `/adminin` est protégé.
+- Le mot de passe initial doit être changé.
+- Les modifications sont persistantes.
+- Les compteurs ne deviennent jamais négatifs.
+- Chaque ajustement nécessite un motif.
+- L'historique ne peut pas être effacé par un utilisateur non autorisé.
+
+### Langues et accessibilité
+- La langue française fonctionne sur toutes les pages.
+- La traduction arabe est complète.
+- Le RTL est correct.
+- Les boutons et les textes restent lisibles sur mobile.
+- Aucun élément essentiel ne disparaît sur petit écran.
+
+---
+
+# 23. Consignes finales de réalisation
+
+Ne réalise pas uniquement une présentation statique.
+
+Construis une application réellement fonctionnelle, avec :
+- Une interface publique complète.
+- Une interface d'administration complète.
+- Une base de données persistante.
+- Une authentification administrateur sécurisée.
+- Une logique de vote fonctionnelle.
+- Une protection anti-doublon IP côté serveur.
+- Un classement dynamique.
+- Des filtres fonctionnels.
+- Une gestion des langues.
+- Une interface responsive.
+
+Privilégie la qualité du design, la clarté du parcours et la fiabilité de la gestion des données.
+
+Ne surcharge aucune page.
+
+Ne crée pas de fonctionnalités décoratives qui compliquent l'utilisation.
+
+Le rendu final doit donner l'impression d'une plateforme institutionnelle professionnelle, moderne, fiable et conçue pour les habitants de Seddouk.
+
+**L'ordre des priorités est :**
+
+1. Simplicité d'utilisation.
+2. Lisibilité et accessibilité.
+3. Design institutionnel inspiré de l'identité visuelle de Seddouk.
+4. Fiabilité du vote et intégrité des données.
+5. Classement et résultats faciles à comprendre.
+6. Administration complète et sécurisée.
+7. Expérience parfaite sur téléphone, tablette et ordinateur.
+
+**Réserve importante :** cette plateforme ne doit pas être présentée comme un système officiel de vote électoral certifié. Avant toute utilisation dans une élection officielle, vérifier les autorisations, les exigences réglementaires algériennes, les procédures de contrôle, l'identification des électeurs, le secret du vote et les garanties d'intégrité. Un filtrage par adresse IP ne suffit pas à garantir qu'une personne ne vote qu'une seule fois.

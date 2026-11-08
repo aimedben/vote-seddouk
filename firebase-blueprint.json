@@ -1,0 +1,135 @@
+{
+  "entities": {
+    "settings": {
+      "title": "ElectionSettings",
+      "description": "Global election configuration and results visibility settings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "name": { "type": "string", "maxLength": 128 },
+        "municipality": { "type": "string", "maxLength": 128 },
+        "wilaya": { "type": "string", "maxLength": 128 },
+        "eventDate": { "type": "string", "maxLength": 32 },
+        "welcomeTitleFr": { "type": "string", "maxLength": 256 },
+        "welcomeTitleAr": { "type": "string", "maxLength": 256 },
+        "welcomeSubtitleFr": { "type": "string", "maxLength": 256 },
+        "welcomeSubtitleAr": { "type": "string", "maxLength": 256 },
+        "publicResultsEnabled": { "type": "boolean" },
+        "resultsStatus": { "type": "string", "enum": ["non_disponible", "en_cours", "provisoire", "definitif"] },
+        "ipProtectionEnabled": { "type": "boolean" },
+        "minCandidates": { "type": "integer" },
+        "maxCandidates": { "type": "integer" }
+      },
+      "required": ["name", "municipality", "eventDate", "publicResultsEnabled", "resultsStatus"]
+    },
+    "party": {
+      "title": "Party",
+      "description": "Official candidate party / list participating in the election",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "name": { "type": "string", "maxLength": 128 },
+        "arabicName": { "type": "string", "maxLength": 128 },
+        "listNumber": { "type": "integer" },
+        "logoUrl": { "type": "string", "maxLength": 512 },
+        "themeColor": { "type": "string", "maxLength": 32 },
+        "accentColor": { "type": "string", "maxLength": 32 },
+        "isPublic": { "type": "boolean" },
+        "displayOrder": { "type": "integer" },
+        "manualVoteAdjustment": { "type": "integer" },
+        "ballotCount": { "type": "integer" }
+      },
+      "required": ["id", "name", "listNumber", "isPublic"]
+    },
+    "candidate": {
+      "title": "Candidate",
+      "description": "Candidate belonging to an official election list",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "partyId": { "type": "string", "maxLength": 64 },
+        "listPosition": { "type": "integer" },
+        "firstName": { "type": "string", "maxLength": 128 },
+        "lastName": { "type": "string", "maxLength": 128 },
+        "arabicName": { "type": "string", "maxLength": 128 },
+        "photoUrl": { "type": "string", "maxLength": 512 },
+        "profession": { "type": "string", "maxLength": 256 },
+        "age": { "type": "integer" },
+        "isActive": { "type": "boolean" },
+        "manualVoteAdjustment": { "type": "integer" },
+        "voteCount": { "type": "integer" }
+      },
+      "required": ["id", "partyId", "listPosition", "firstName", "lastName", "isActive"]
+    },
+    "ballot": {
+      "title": "Ballot",
+      "description": "Individual anonymous citizen ballot cast for a list and candidates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "partyId": { "type": "string", "maxLength": 64 },
+        "candidateIds": { "type": "array" },
+        "ipFingerprint": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["partyId", "candidateIds", "createdAt"]
+    },
+    "auditLog": {
+      "title": "AuditLog",
+      "description": "Administrative action trace for electoral transparency",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "adminEmail": { "type": "string", "maxLength": 128 },
+        "action": { "type": "string", "maxLength": 128 },
+        "entityType": { "type": "string", "maxLength": 64 },
+        "entityId": { "type": "string", "maxLength": 64 },
+        "entityName": { "type": "string", "maxLength": 128 },
+        "oldValue": { "type": "string", "maxLength": 512 },
+        "adjustment": { "type": "integer" },
+        "newValue": { "type": "string", "maxLength": 512 },
+        "reason": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["action", "entityType", "reason", "createdAt"]
+    },
+    "admin": {
+      "title": "Admin",
+      "description": "Authorized election administrator profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "enum": ["admin", "superadmin"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/settings" },
+      "description": "Election settings collection"
+    },
+    "/parties/{partyId}": {
+      "schema": { "$ref": "#/entities/party" },
+      "description": "Official candidate lists"
+    },
+    "/candidates/{candidateId}": {
+      "schema": { "$ref": "#/entities/candidate" },
+      "description": "Candidates for each party"
+    },
+    "/ballots/{ballotId}": {
+      "schema": { "$ref": "#/entities/ballot" },
+      "description": "Citizen ballots"
+    },
+    "/auditLogs/{logId}": {
+      "schema": { "$ref": "#/entities/auditLog" },
+      "description": "Audit trail of changes"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/admin" },
+      "description": "Whitelisted administrator credentials"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Seddouk Elections 2026",
+  "description": "Plateforme électorale et de vote citoyen pour les élections de la commune de Seddouk, wilaya de Béjaïa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

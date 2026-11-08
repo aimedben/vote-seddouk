@@ -1,0 +1,12 @@
+{
+  "projectId": "vote-seddouk",
+  "appId": "1:822773731108:web:d45629ff57c0891c5fadb1",
+  "apiKey": "AIzaSyA0-QTjdKCmGQ8Q0nQezQLXWkrQgPB4sAc",
+  "authDomain": "vote-seddouk.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-seddoukelections-730cea3d-7811-4701-992e-509f837c9e18",
+  "storageBucket": "vote-seddouk.firebasestorage.app",
+  "messagingSenderId": "822773731108",
+  "measurementId": "",
+  "oAuthClientId": "822773731108-ke6gvv0rmv3ejmia8fqtqeh654iebcrv.apps.googleusercontent.com",
+  "recaptchaSiteKey": ""
+}
